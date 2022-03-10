@@ -44,4 +44,53 @@ AUROC scores of our models on the development set (dev-seen) as well as the Phas
 - Proposed solution and other state-of-the-art architectures such as Oscar there is a lot of room for improvement in terms of their ability to perform “true” multimodal reasoning.
 ### Future work
 - the observations while building this model can further inform future research in the field
-- Recent developments in the field, such as ERNIE-ViL, a multimodal model that incorporates structured knowledge from scene graphs in its pretraining tasks, is another interesting avenue for future work
+- Recent developments in the field, such as ERNIE-ViL, a multimodal model that incorporates structured knowledge from scene graphs in its pretraining tasks, is another interesting avenue for future work.
+
+
+
+## Paper-5 :Classification of Multimodal Hate Speech -- The Winning Solution of Hateful Memes Challenge: Xiayu Zhong
+### Problem statement
+To create an algorithm that identifies multimodal hate speech in internet meme
+### Methodology / Solution / Architecture
+- Proposed a classification algorithm that combined the multimodal with rules.
+#####  1. Exploration and Rules Extraction
+#####  2. Pretrained Model Selection
+#####  3. Model Enhancement
+#####  4. Semi-supervised Learning
+#####  5. Adjustment Based on Rule 2
+#####  6. Exploration and Rules Extraction
+####   7. Models Stacking
+Extracted classification rules from training set, and these rules could be used to generate pseudo-label or adjust classification
+probability. Using rules above, part of samples in test set can almost be determined, expending these samples to training
+set can greatly improve the metrics of model. adjusted the predictions of each model with rules, then stack models to generate final prediction
+### Metrics
+Accuracy and AUROC
+### Experiment
+VisualBERT,  VisualBERT COCO, ViLBERT, ViLBERT CC, MMBT-Region, UNITER and  Masked Region Modeling(MRM)
+### Code repository / supplemental material
+- https://arxiv.org/abs/2012.01002
+- 
+### Result
+| Pretrained model              | AUROC    |
+|-------------------------------|:-------|
+|visual_bert.pretrained.cc.full| 0.7260|
+|visual_bert.pretrained.cc.small_fifty_pc| 0.7396|
+|visual_bert.pretrained.coco.full| 0.7355|
+
+      Scores of top 3 pretrained model
+
+| Pretrained model              | AUROC    |
+|-------------------------------|:-------|
+|visual_bert.pretrained.cc.full+MRM |0.7400|
+|visual_bert.pretrained.coco.full+MRM |0.7376|
+|visual_bert.finetuned.hateful_memes.direct+MRM |0.7386|
+
+       Scores of top 3 models with MRM
+
+The combination of rules extracted from data set with multimodal framework, which improved both the accuracy and the AUROC more than 13% which leades to accuracy and AUROC of 86.8% and 0.923 respectively.
+
+### Conclusion
+- Implemented MRM to VisualBert to enhance its effectiveness in Hateful Memes, and applied several common technologies such as K-fold, model stacking, semi-supervised learning, significantly improved the AUROC and accuracy of classification
+- The features of the dataset are too conspicuous, this makes it possible for me to extract rules from data, but these rules may not be so practical in real world scenarios
+### Future work
+- To focus on improving  the multimodal framework
